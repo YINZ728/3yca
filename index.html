@@ -28,20 +28,32 @@ html,body{
 }
 
 .popup_container {
-    position:absolute;
+    position: fixed; /* 改為 fixed，確保相對於手機螢幕全螢幕定位 */
     z-index: 1000;
-    left:50%;
-    top:0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* 使用 Flexbox 實現完美的水平與垂直置中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* 點擊穿透：確保點擊選單外部的畫布（Canvas）時能正常觸發繪圖 */
+    pointer-events: none; 
 }
 
 #H5AlertView {
-    width:220px;
-    height:300px;
-    position:absolute;
-    left:-110px; top:130px;
-    text-align:center;
-    zoom:0.8;
+    width: 220px;
+    /* 移除原本的 position: absolute, left, top，交給父層 Flexbox 處理 */
+    text-align: center;
+    zoom: 0.8;
+    
+    /* 恢復選單內部的點擊事件，否則按鈕會無法動態點擊 */
+    pointer-events: auto; 
 }
+
 
 #title-text{
 padding-top:0px;
@@ -89,7 +101,7 @@ button:active {
 </style>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
-if(typeof $ == 'undefined') alert("网络异常无法访问百度CDN!");
+if(typeof $ == 'undefined') alert("網路異常，請稍後重試。");
 
 //页面显示完毕事件
 $(document).ready(function(){
