@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>H5全屏绘图</title>
+<title>Y1n2</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
@@ -100,6 +100,39 @@ button:active {
 
 </style>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    // 改寫 alert
+    window.alert = function (message) {
+        var iframe = document.createElement("IFRAME");
+        iframe.style.display = "none";
+        iframe.setAttribute("src", 'about:blank'); // 讓 iframe 變成空白頁
+        document.documentElement.appendChild(iframe);
+        iframe.contentWindow.alert(message);
+        iframe.parentNode.removeChild(iframe);
+    };
+
+    // 改寫 confirm
+    window.confirm = function (message) {
+        var iframe = document.createElement("IFRAME");
+        iframe.style.display = "none";
+        iframe.setAttribute("src", 'about:blank'); // 讓 iframe 變成空白頁
+        document.documentElement.appendChild(iframe);
+        var result = iframe.contentWindow.confirm(message);
+        iframe.parentNode.removeChild(iframe);
+        return result;
+    };
+
+    // 改寫 prompt
+    window.prompt = function (message, defaultText) {
+        var iframe = document.createElement("IFRAME");
+        iframe.style.display = "none";
+        iframe.setAttribute("src", 'about:blank'); // 讓 iframe 變成空白頁
+        document.documentElement.appendChild(iframe);
+        var result = iframe.contentWindow.prompt(message, defaultText);
+        iframe.parentNode.removeChild(iframe);
+        return result;
+    };
+</script>
 <script>
 if(typeof $ == 'undefined') alert("網路異常，請稍後重試。");
 
